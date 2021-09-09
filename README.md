@@ -16,5 +16,5 @@
 <img src="./doc/block%20diagram.png" width="60%" height="60%" title="模块设计图"></img>
   
 原理图  
-<img src="./doc/cpu_td4.jpg" width="60%" height="60%" title="原理图"></img>
+<img src="./doc/cpu_td4.jpg" width="100%" height="100%" title="原理图"></img>
   
