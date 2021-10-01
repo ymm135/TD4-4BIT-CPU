@@ -10,7 +10,11 @@
 
 <br>
 
-本书籍的[官方网站](http://www.asmirvine.com/index6th.htm).  [源码仓库](https://github.com/ymm135/Irvine). [vs2015工程](../TD4-4BIT-CPU/res/files/汇编语言vs2015工程)
+本书籍的[官方网站](http://www.asmirvine.com/index6th.htm).  [源码仓库](https://github.com/ymm135/Irvine). [vs2015工程](../TD4-4BIT-CPU/res/files/汇编语言vs2015工程)  
+<br>
+
+网络公开课[汇编语言程序设计](https://www.icourses.cn/web/sword/portal/shareDetails?cId=2720#/course/chapter)
+[ppt讲义](./doc/汇编程序设计)
 
 <br>
 
