@@ -237,6 +237,88 @@ Gs_base = 0x0000000000000000
 类似于C语言的调试，可以清晰看到slice的内部实现(数据结构),并且可以查看slice的内存视图  
 ![](./res/slice的调试.png)
 
+使用gdb查看反汇编
+```
+-exec help disassemble
+Disassemble a specified section of memory.
+Default is the function surrounding the pc of the selected frame.
+With a /m modifier, source lines are included (if available).
+With a /r modifier, raw instructions in hex are included.
+With a single argument, the function surrounding that address is dumped.
+Two arguments (separated by a comma) are taken as a range of memory to dump,
+  in the form of "start,end", or "start,+length".
+
+Note that the address is interpreted as an expression, not as a location
+like in the "break" command.
+So, for example, if you want to disassemble function bar in file foo.c
+you must type "disassemble 'foo.c'::bar" and not "disassemble foo.c:bar".
+
+查看main函数的反汇编代码
+-exec disassemble /m main
+Dump of assembler code for function main.main:
+   0x000000000047e260 <+0>:	lea    -0x48(%rsp),%r12
+   0x000000000047e265 <+5>:	cmp    0x10(%r14),%r12
+   0x000000000047e269 <+9>:	jbe    0x47e3a2 <main.main+322>
+   0x000000000047e26f <+15>:	sub    $0xc8,%rsp
+   0x000000000047e276 <+22>:	mov    %rbp,0xc0(%rsp)
+   0x000000000047e27e <+30>:	lea    0xc0(%rsp),%rbp
+   0x000000000047e286 <+38>:	lea    0x20(%rsp),%rdi
+   0x000000000047e28b <+43>:	lea    -0x30(%rdi),%rdi
+   0x000000000047e28f <+47>:	nopw   0x0(%rax,%rax,1)
+   0x000000000047e298 <+56>:	nopl   0x0(%rax,%rax,1)
+   0x000000000047e2a0 <+64>:	mov    %rbp,-0x10(%rsp)
+   0x000000000047e2a5 <+69>:	lea    -0x10(%rsp),%rbp
+   0x000000000047e2aa <+74>:	callq  0x45b290 <runtime.duffzero+336>
+   0x000000000047e2af <+79>:	mov    0x0(%rbp),%rbp
+   0x000000000047e2b3 <+83>:	lea    0x20(%rsp),%rcx
+   0x000000000047e2b8 <+88>:	test   %al,(%rcx)
+   0x000000000047e2ba <+90>:	jmp    0x47e2bc <main.main+92>
+   0x000000000047e2bc <+92>:	jmp    0x47e2be <main.main+94>
+   0x000000000047e2be <+94>:	mov    %rcx,0x90(%rsp)
+   0x000000000047e2c6 <+102>:	movq   $0x5,0x98(%rsp)
+   0x000000000047e2d2 <+114>:	movq   $0xa,0xa0(%rsp)
+   0x000000000047e2de <+126>:	xchg   %ax,%ax
+   0x000000000047e2e0 <+128>:	jmp    0x47e2e2 <main.main+130>
+   0x000000000047e2e2 <+130>:	movq   $0x2,0x30(%rsp)
+   0x000000000047e2eb <+139>:	mov    0x90(%rsp),%rcx
+   0x000000000047e2f3 <+147>:	jmp    0x47e2f5 <main.main+149>
+   0x000000000047e2f5 <+149>:	movq   $0x100,0x18(%rcx)
+=> 0x000000000047e2fd <+157>:	mov    0x98(%rsp),%rcx
+   0x000000000047e305 <+165>:	mov    %rcx,0x18(%rsp)
+   0x000000000047e30a <+170>:	movups %xmm15,0x80(%rsp)
+   0x000000000047e313 <+179>:	lea    0x80(%rsp),%rcx
+   0x000000000047e31b <+187>:	mov    %rcx,0x78(%rsp)
+   0x000000000047e320 <+192>:	mov    0x18(%rsp),%rax
+   0x000000000047e325 <+197>:	callq  0x4095a0 <runtime.convT64>
+   0x000000000047e32a <+202>:	mov    %rax,0x70(%rsp)
+   0x000000000047e32f <+207>:	mov    0x78(%rsp),%rcx
+   0x000000000047e334 <+212>:	test   %al,(%rcx)
+   0x000000000047e336 <+214>:	lea    0x7563(%rip),%rdx        # 0x4858a0
+   0x000000000047e33d <+221>:	mov    %rdx,(%rcx)
+   0x000000000047e340 <+224>:	lea    0x8(%rcx),%rdi
+   0x000000000047e344 <+228>:	cmpl   $0x0,0xd5c35(%rip)        # 0x553f80 <runtime.writeBarrier>
+   0x000000000047e34b <+235>:	je     0x47e34f <main.main+239>
+   0x000000000047e34d <+237>:	jmp    0x47e355 <main.main+245>
+   0x000000000047e34f <+239>:	mov    %rax,0x8(%rcx)
+   0x000000000047e353 <+243>:	jmp    0x47e35c <main.main+252>
+   0x000000000047e355 <+245>:	callq  0x45ab40 <runtime.gcWriteBarrier>
+   0x000000000047e35a <+250>:	jmp    0x47e35c <main.main+252>
+   0x000000000047e35c <+252>:	mov    0x78(%rsp),%rax
+   0x000000000047e361 <+257>:	test   %al,(%rax)
+   0x000000000047e363 <+259>:	jmp    0x47e365 <main.main+261>
+   0x000000000047e365 <+261>:	mov    %rax,0xa8(%rsp)
+   0x000000000047e36d <+269>:	movq   $0x1,0xb0(%rsp)
+   0x000000000047e379 <+281>:	movq   $0x1,0xb8(%rsp)
+   0x000000000047e385 <+293>:	mov    $0x1,%ebx
+   0x000000000047e38a <+298>:	mov    %rbx,%rcx
+   0x000000000047e38d <+301>:	callq  0x478f80 <fmt.Println>
+   0x000000000047e392 <+306>:	mov    0xc0(%rsp),%rbp
+   0x000000000047e39a <+314>:	add    $0xc8,%rsp
+   0x000000000047e3a1 <+321>:	retq   
+   0x000000000047e3a2 <+322>:	callq  0x458b80 <runtime.morestack_noctxt>
+   0x000000000047e3a7 <+327>:	jmpq   0x47e260 <main.main>
+End of assembler dump.
+```
 
 - 汇编指令  
   
