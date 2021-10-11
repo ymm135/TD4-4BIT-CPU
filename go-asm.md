@@ -62,7 +62,7 @@ Some assemblers reverse source and destination, so read your documentation caref
 
 #### Go汇编指令学习
 ##### Go Slice汇编指令学习
-- go中slice的具体实现
+- **go中slice的具体实现**
 
 src/runtime/slice.go
 ```
@@ -320,7 +320,7 @@ Dump of assembler code for function main.main:
 End of assembler dump.
 ```
 
-- 汇编指令  
+- **汇编指令**  
   
 以下这两条指令得到反汇编指令: 
 objdump -d slicelearn > att.asm  
@@ -479,17 +479,24 @@ c00011feb0
 ```
 
 
-- 寄存器与调用栈图  
+- **寄存器与调用栈图**   
 
 
-- 总结  
+- **总结**  
 在创建slice之前，首先分配array的地址rdi/rcx = [rsp+0x20], 调用系统函数进行清零，最终把array、len、cap填充到slice指向的内存空间。
 在赋值的过程中，就是把值填充到对应数组起始地址的内存，获取slice长度时，就是去除slice对应len内存地址的值mov [rsp+0x18] [rsp+0x98] (简化指令,rsp+0x18代表len接收变量地址, rsp+0x98代表len内存地址8byte)
 
 备注:首先要区分堆栈地址和堆栈地址内存存储的值。rsp+0x20表明栈顶偏移0x20的栈地址，[rsp+0x20] 代表栈顶偏移0x20的栈**地址的值**  
 
-##### Go 函数调用及返回值
+
+##### Go map结构
 源代码  
+src/runtime/map.go
+如果使用delve调试不清晰，可以使用gdb调试程序，可以直接看到map的结构
+<br>
+
+![DAP](./res/go-map1.png)  
+<br>
 
 
 汇编指令  
@@ -498,14 +505,222 @@ c00011feb0
 
 
 总结  
+
+##### Go 函数调用和方法调用
+- **源代码**  
+
+```
+     1: package main
+     2: 
+     3: import "fmt"
+     4: 
+     5: // 文件对象
+     6: type File struct {
+     7:     fd int
+     8: }
+     9: 
+    10: // 关闭文件
+    11: func (f *File) CloseFile() int {
+    12:     fmt.Println("文件的fd:", f.fd)
+    13:     return 1
+    14: }
+    15: 
+    16: func add(a int, b int) int {
+    17:     return a + b
+    18: }
+    19: 
+    20: func main() {
+    21:     x := 5;
+    22:     y := 10;
+    23:     sum := add(x, y)
+    24:     fmt.Println(sum)
+    25: 
+    26:     var f File
+    27:     f.fd = 19
+    28:     f.CloseFile()
+=>  29: }
+```
+
+- **汇编指令**  
+
+```
+add方法
+=>	method.go:16	0x10abb40*	4883ec10		sub rsp, 0x10
+	method.go:16	0x10abb44	48896c2408		mov qword ptr [rsp+0x8], rbp
+	method.go:16	0x10abb49	488d6c2408		lea rbp, ptr [rsp+0x8]
+	method.go:16	0x10abb4e	4889442418		mov qword ptr [rsp+0x18], rax
+	method.go:16	0x10abb53	48895c2420		mov qword ptr [rsp+0x20], rbx
+	method.go:16	0x10abb58	48c7042400000000	mov qword ptr [rsp], 0x0
+	method.go:17	0x10abb60	488b442418		mov rax, qword ptr [rsp+0x18]
+	method.go:17	0x10abb65	4803442420		add rax, qword ptr [rsp+0x20]
+	.:0		0x10abb6a	48890424		mov qword ptr [rsp], rax
+	.:0		0x10abb6e	488b6c2408		mov rbp, qword ptr [rsp+0x8]
+	.:0		0x10abb73	4883c410		add rsp, 0x10
+	.:0		0x10abb77	c3			ret
+
+CloseFile方法 : 0x10aba20    
+    method.go:11	0x10aba20	493b6610		    cmp rsp, qword ptr [r14+0x10]
+	method.go:11	0x10aba24	0f86e4000000		jbe 0x10abb0e
+=>	method.go:11	0x10aba2a	4883ec78		    sub rsp, 0x78
+	method.go:11	0x10aba2e	48896c2470		    mov qword ptr [rsp+0x70], rbp
+	method.go:11	0x10aba33	488d6c2470		    lea rbp, ptr [rsp+0x70]
+	method.go:11	0x10aba38	4889842480000000	mov qword ptr [rsp+0x80], rax
+	method.go:11	0x10aba40	48c744241800000000	mov qword ptr [rsp+0x18], 0x0
+	method.go:12	0x10aba49*	488d4c2450		    lea rcx, ptr [rsp+0x50]
+	method.go:12	0x10aba4e	440f1139		    movups xmmword ptr [rcx], xmm15
+
+TEXT main.main(SB) /Users/zero/work/go/workspace/go-coding/lang/container/slices/method/method.go
+	method.go:20	0x10abb80	493b6610		cmp rsp, qword ptr [r14+0x10]
+	method.go:20	0x10abb84	0f86d3000000		jbe 0x10abc5d
+	method.go:20	0x10abb8a*	4883ec78		sub rsp, 0x78
+	method.go:20	0x10abb8e	48896c2470		mov qword ptr [rsp+0x70], rbp
+	method.go:20	0x10abb93	488d6c2470		lea rbp, ptr [rsp+0x70]
+	method.go:21	0x10abb98	48c744242005000000	mov qword ptr [rsp+0x20], 0x5
+	method.go:22	0x10abba1	48c74424180a000000	mov qword ptr [rsp+0x18], 0xa
+	method.go:23	0x10abbaa	488b442420		mov rax, qword ptr [rsp+0x20]
+	method.go:23	0x10abbaf	bb0a000000		mov ebx, 0xa
+	method.go:23	0x10abbb4	e887ffffff		call $main.add
+	method.go:23	0x10abbb9	4889442428		mov qword ptr [rsp+0x28], rax
+	method.go:24	0x10abbbe	440f117c2448		movups xmmword ptr [rsp+0x48], xmm15
+	method.go:24	0x10abbc4	488d4c2448		lea rcx, ptr [rsp+0x48]
+	method.go:24	0x10abbc9	48894c2440		mov qword ptr [rsp+0x40], rcx
+	method.go:24	0x10abbce	488b442428		mov rax, qword ptr [rsp+0x28]
+	method.go:24	0x10abbd3	e8a8ddf5ff		call $runtime.convT64
+	method.go:24	0x10abbd8	4889442438		mov qword ptr [rsp+0x38], rax
+	method.go:24	0x10abbdd	488b4c2440		mov rcx, qword ptr [rsp+0x40]
+	method.go:24	0x10abbe2	8401			test byte ptr [rcx], al
+	method.go:24	0x10abbe4	488d1555740000		lea rdx, ptr [rip+0x7455]
+	method.go:24	0x10abbeb	488911			mov qword ptr [rcx], rdx
+	method.go:24	0x10abbee	488d7908		lea rdi, ptr [rcx+0x8]
+	method.go:24	0x10abbf2	833d07530d0000		cmp dword ptr [runtime.writeBarrier], 0x0
+	method.go:24	0x10abbf9	7402			jz 0x10abbfd
+	method.go:24	0x10abbfb	eb06			jmp 0x10abc03
+	method.go:24	0x10abbfd	48894108		mov qword ptr [rcx+0x8], rax
+	method.go:24	0x10abc01	eb07			jmp 0x10abc0a
+	method.go:24	0x10abc03	e8f83dfbff		call $runtime.gcWriteBarrier
+	method.go:24	0x10abc08	eb00			jmp 0x10abc0a
+	method.go:24	0x10abc0a	488b442440		mov rax, qword ptr [rsp+0x40]
+	method.go:24	0x10abc0f	8400			test byte ptr [rax], al
+	method.go:24	0x10abc11	eb00			jmp 0x10abc13
+	method.go:24	0x10abc13	4889442458		mov qword ptr [rsp+0x58], rax
+	method.go:24	0x10abc18	48c744246001000000	mov qword ptr [rsp+0x60], 0x1
+	method.go:24	0x10abc21	48c744246801000000	mov qword ptr [rsp+0x68], 0x1
+	method.go:24	0x10abc2a	bb01000000		mov ebx, 0x1
+	method.go:24	0x10abc2f	4889d9			mov rcx, rbx
+	method.go:24	0x10abc32	e889a7ffff		call $fmt.Println
+	method.go:26	0x10abc37	48c744243000000000	mov qword ptr [rsp+0x30], 0x0
+	method.go:27	0x10abc40	48c744243013000000	mov qword ptr [rsp+0x30], 0x13
+	method.go:28	0x10abc49	488d442430		lea rax, ptr [rsp+0x30]
+	method.go:28	0x10abc4e	e8cdfdffff		call $main.(*File).CloseFile
+=>	method.go:29	0x10abc53	488b6c2470		mov rbp, qword ptr [rsp+0x70]
+	method.go:29	0x10abc58	4883c478		add rsp, 0x78
+	method.go:29	0x10abc5c	c3			ret
+	method.go:20	0x10abc5d	0f1f00			nop dword ptr [rax], eax
+	method.go:20	0x10abc60	e8bb1dfbff		call $runtime.morestack_noctxt
+	.:0		0x10abc65	e916ffffff		jmp $main.main
+```
+
+- **寄存器与对应关系**
+  
+```
+//查看add,是属于包main下的add函数,对应的汇编调用:call $main.add 
+(dlv) print add  
+main.add  
+  
+//查看add函数地址，可以看出函数名add本质就是一个指针，指向函数的起始地址0x10abb40  
+(dlv) print &add  
+(*)(0x10abb40)  
+
+(dlv) print f
+main.File {fd: 19}
+
+(dlv) print &f
+(*main.File)(0xc000111f30)
+
+//如果查看f，就是一个结构体，下方有个fd变量0x13
+
+(dlv) x -fmt hex -count 48 -size 1 0xc000111f30
+0xc000111f30:   0x13   0x00   0x00   0x00   0x00   0x00   0x00   0x00   
+0xc000111f38:   0xb8   0x58   0x14   0x01   0x00   0x00   0x00   0x00   
+0xc000111f40:   0x48   0x1f   0x11   0x00   0xc0   0x00   0x00   0x00
+
+
+//那么方法到底是什么？
+//找不到方法
+(dlv) print CloseFile
+Command failed: could not find symbol value for CloseFile
+
+(dlv) print f.CloseFile
+main.(*File).CloseFile
+
+使用gdb的汇编查看
+=> 0x000000000047e489 <+201>:	lea    0x30(%rsp),%rax
+   0x000000000047e48e <+206>:	callq  0x47e260 <main.(*File).CloseFile>
+
+也是一段地址，带有参数类型,现在的问题是，写成这样形式，怎么知道把当前对象作为参数传递给函数调用的？
+当执行func (f *File) CloseFile() int { 方法是，打印f变量，这时f是形参f，两个指针符号
+(dlv) print &f
+(**main.File)(0xc000111f00)
+
+(dlv) x -fmt hex -count 48 -size 1 0xc000111f00
+0xc000111f00:   0x30   0x1f   0x11   0x00   0xc0   0x00   0x00   0x00   
+0xc000111f08:   0x01   0x00   0x00   0x00   0x00   0x00   0x00   0x00
+
+形参f存储的地址就是结构f的地址0xc000111f30, 查看内存可发现0x13就是fd的值
+(dlv) x -fmt hex -count 48 -size 1 0xc000111f30
+0xc000111f30:   0x13   0x00   0x00   0x00   0x00   0x00   0x00   0x00   
+0xc000111f38:   0xb8   0x58   0x14   0x01   0x00   0x00   0x00   0x00   
+0xc000111f40:   0x48   0x1f   0x11   0x00   0xc0   0x00   0x00   0x00
+
+那还是作为参数处理的，在调用前把结构接口实例赋值给它。
+rbp = 0xc000111ef0
+rsp = 0xc000111e80
+f = 0xc000111f00
+
+rsp+0x80 = f ,就是语句 mov qword ptr [rsp+0x80]  .从堆栈的接口看，这个参数f在RBP之前就已经创建了。
+```
+<br>
+这个过程方法栈的变化过程:  
+
+![DAP](./res/函数与方法调用.jpg) 
+<br>
+
+- **总结**  
+
+>方法调用之前，都会把参数存储到寄存器中,比如add的两个加数，分别存放在raxrbx寄存器中,返回值，如果有多个，也是放在寄存器中,比如加数的和放在rax寄存中,最终存入sum变量地址中。 
+> 
+>需要注意的是go方法，比如这里的CloseFile方法，设计到结构体File，在调用体方法时，首先会保存到寄存器中,这里是保存到rax寄存器中，最终保存到方法栈以供调用。
+
+<br>
+<br>
+现在的问题是方法调用时，怎么知道File该作为参数保存到寄存器并压入栈中呢？
+这就涉及到Go编译器的具体实现了，首先通过增加-x(印编译时会用到的所有命令)数可以看到编译过程  
+
+
+go build -n method.go  
+
+这一部分是编译的核心，通过 compile、 buildid、 link 三个命令会编译出可执行文件 a.out。  
+然后通过 mv 命令把 a.out 移动到当前文件夹下面，并改成跟项目文件一样的名字（这里也可以自己指定名字）
+
+<br>
+<div align=center>
+<img src="./res/go-byq-3.png" width="60%" height="60%" title="go 编译过程"></img>  
+</div>
+<br>
+
+机器码生成部分:  
+经过优化后的中间代码，首先会在这个阶段被转化为汇编代码（Plan9），而汇编语言仅仅是机器码的文本表示，机器还不能真的去执行它。所以这个阶段会调用汇编器，汇编器会根据我们在执行编译时设置的架构，调用对应代码来生成目标机器码。
+
+这里比有意思的是，Golang 总说自己的汇编器是跨平台的。其实他也是写了多分代码来翻译最终的机器码。因为在入口的时候他会根据我们所设置的 GOARCH=xxx 参数来进行初始化处理，然后最终调用对应架构编写的特定方法来生成机器码。这种上层逻辑一致，底层逻辑不一致的处理方式非常通用，非常值得我们学习。我们简单来一下这个处理。[摘抄自走进Golang之编译器原理](https://xiaomi-info.github.io/2019/11/13/golang-compiler-principle/)
+
 
 ##### Go 结构体和接口实现
-源代码  
+- **源代码**   
 
 
-汇编指令  
+- **汇编指令**   
 
-寄存器与调用栈图  
+- **寄存器与调用栈图**   
 
 
-总结  
+- **总结**   
