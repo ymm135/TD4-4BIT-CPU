@@ -129,8 +129,13 @@ vendor/github.com/go-gl/glfw/v3.3/glfw/c_glfw.go
 把glfw的源码放在了/usr/local/include文件夹下。  
 
 
-![DAP](./res/vscode-go-debug-dap.png)  
 [Delve调试器](https://chai2010.cn/advanced-go-programming-book/ch3-asm/ch3-09-debug.html)
+
+<br>
+<div align=center>
+<img src="./res/vscode-go-debug-dap.png" width="60%" height="60%" title="Delve调试器"></img>  
+</div>
+<br>
 
 ```
 # 开始调试
