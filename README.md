@@ -7,7 +7,8 @@
 * [数字电路基本知识](./base-knowledge.md)
 * [单片机原理及应用](./mcu-knowledge.md)
 * [TD4-CPU仿真](./td4-simulate.md)
-* [GO汇编指令学习](./go-asm.md)
+* [GO汇编指令学习](./go-asm.md) 
+* [go语言课程学习札记](https://github.com/ymm135/go-coding)
 
 [TD4-CPU 原理在线模拟](https://vanya.jp.net/td4/)
 <img src="./res/td4-monitu.png" width="100%" height="100%" title="原理在线模拟"></img>
