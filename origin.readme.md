@@ -625,4 +625,3 @@ Iku Watanami
  单行本-平装 ‏ : ‎ 328 页
  ISBN-10 ‏ : ‎ 4839909865
  ISBN-13 ‏ : ‎ 978-4839909864
-本人之前是学习Java的，因为公司项目需要，转而学习Go，在看到嘀嘀大神讲解[Go Plan9汇编入门](https://www.youtube.com/watch?v=dPdXxex1v_4)的视频后，详细的阅读了文档[视频讲义](https://github.com/cch123/asmshare/blob/master/layout.md)
