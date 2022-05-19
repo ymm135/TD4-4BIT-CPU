@@ -64,8 +64,58 @@ Td4的PCB元器件标识
 | U13 | SN74HC154NT  | SN74HC154NT  | 4-Line to 16-Line Decoder / Demultiplexer  | 1  |  
 
 ## 原理分析
-### 时钟、复位 
+### 数字逻辑设计
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-HC161</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-HC161.png" width="80%" height="80%"></img>  
+</div>
+<br>
 
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-HC153</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-HC153x2.png" width="60%" height="60%"></img>  
+</div>
+<br>
+
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-ALU</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-ALU.png" width="60%" height="60%"></img>  
+</div>
+<br>
+
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-HC161PC</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-HC161PC.png" width="80%" height="80%"></img>  
+</div>
+<br>
+
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-Decoder</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-Decoder.png" width="80%" height="80%"></img>  
+</div>
+<br>
+
+<div align="center">
+    <font face="黑体" color=gray size=3>TD4-Main</font> 
+</div>
+<div align=center>
+    <img src="./res/TD4-Main.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+
+
+### 时钟、复位 
 ### 存储器
 ### 输入、输出
 ### 控制器
@@ -95,6 +145,7 @@ Td4的PCB元器件标识
 </div>
 
 ## CPU编写程序
+[Verilog HDL学习](https://www.bilibili.com/video/BV12y4y1v7V3?p=1)  
 ### [CPU Verilog代码](https://github.com/ymm135/AZPRcpu)   
 
 
