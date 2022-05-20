@@ -116,11 +116,38 @@ Td4的PCB元器件标识
 
 
 ### 时钟、复位 
-### 存储器
-### 输入、输出
-### 控制器
-### 运算器
 
+时钟及复位电路: 
+<div align=center>
+    <img src="./res/clock2.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+时钟电路细节: 
+<div align=center>
+    <img src="./res/clock2.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+10 HZ  宽度为100ms， 正脉宽56ms 负脉宽 47ms 
+<div align=center>
+    <img src="./res/DSOBMP0020.bmp" width="100%" height="100%"></img>  
+</div>
+<br>
+
+1HZ 宽度为1000ms
+<div align=center>
+    <img src="./res/DSOBMP0020.bmp" width="100%" height="100%"></img>  
+</div>
+<br>
+
+
+### 存储器(SN74HC161N)   
+
+
+### 输入、输出
+### 控制器() 
+### 运算器()
 
 
 ## CPU焊接  
