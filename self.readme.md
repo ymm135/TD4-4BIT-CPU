@@ -64,7 +64,7 @@ Td4的PCB元器件标识
 | U13 | SN74HC154NT  | SN74HC154NT  | 4-Line to 16-Line Decoder / Demultiplexer  | 1  |  
 
 ## 原理分析
-### 数字逻辑设计
+### [数字逻辑设计](https://circuitverse.org/users/6130/projects/17074)  
 <div align="center">
     <font face="黑体" color=gray size=3>TD4-HC161</font> 
 </div>
@@ -144,10 +144,50 @@ Td4的PCB元器件标识
 
 ### 存储器(SN74HC161N)   
 
+<div align=center>
+    <img src="./res/161-2.png" width="100%" height="100%"></img>  
+</div>
+<br>
 
-### 输入、输出
-### 控制器() 
-### 运算器()
+功能表:  
+<div align=center>
+    <img src="./res/161-1.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+
+
+
+### 输入、输出  
+
+
+### 控制器(74HC/HCT153) 
+Dual 4-input multiplexer  
+
+<div align=center>
+    <img src="./res/153-1.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+<div align=center>
+    <img src="./res/153-2.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+<div align=center>
+    <img src="./res/153-3.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
+
+### 运算器(TC74HC283AFN)
+4-Bit Binary Full Adder
+
+<div align=center>
+    <img src="./res/283-1.png" width="100%" height="100%"></img>  
+</div>
+<br>
+
 
 
 ## CPU焊接  

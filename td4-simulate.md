@@ -10,5 +10,3 @@
 Learn Digital Logic Design easily. 
 The Computer Logical Organization is basically the abstraction which is below the operating system and above the digital logic level. Now at this point, the important points are the `functional units`/`subsystems` that refer to some hardware which is made up of lower level building blocks. 
 
-
-### 
