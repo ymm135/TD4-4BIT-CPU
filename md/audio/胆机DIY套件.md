@@ -24,14 +24,36 @@
 <div align=center>
 <img src="../../res/套件清单.png" width="100%" height="100%"></img>  
 </div>
+<br>
 
 <div align=center>
 <img src="../../res/表头接线图.png" width="100%" height="100%"></img>  
 </div>
+<br>
 
 <div align=center>
 <img src="../../res/胆机安装图.png" width="100%" height="100%"></img>  
 </div>
+<br>
+
+
+## 自己动手制作
+### 参考图 
+
+<div align=center>
+<img src="../../res/胆机安装参考图2.jpg" width="100%" height="100%"></img>  
+</div>
+<br>
+
+<div align=center>
+<img src="../../res/胆机安装参考图1.jpg" width="100%" height="100%"></img>  
+</div>
+<br>
+
+### 自己制作的图片  
+
+
+
 
 
 
