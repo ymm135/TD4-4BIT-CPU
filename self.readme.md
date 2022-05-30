@@ -6,6 +6,7 @@
 
 ### [入门-面包板电子制作130.md](md/面包板电子制作130.md)  
 ### [练习板及焊接学习](md/练习板及焊接学习.md)  
+### [胆机DIY](md/audio/胆机DIY套件.md)  
 
 ## 基础知识(CPU逻辑电路)
 ### [冯·诺伊曼结构](https://zh.m.wikipedia.org/zh-hans/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84)  

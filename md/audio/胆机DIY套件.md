@@ -18,7 +18,21 @@
 
 以上就是号称梦幻之球、不朽的音响神话的300B。
 
-#### 6J8P
+## 套件 
+### 清单及制作图 
+
+<div align=center>
+<img src="../../res/套件清单.png" width="100%" height="100%"></img>  
+</div>
+
+<div align=center>
+<img src="../../res/表头接线图.png" width="100%" height="100%"></img>  
+</div>
+
+<div align=center>
+<img src="../../res/胆机安装图.png" width="100%" height="100%"></img>  
+</div>
+
 
 
 
