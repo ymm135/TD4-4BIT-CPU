@@ -40,19 +40,23 @@
 ## 自己动手制作
 ### 参考图 
 
-<div align=center>
-<img src="../../res/胆机安装参考图2.jpg" width="100%" height="100%"></img>  
-</div>
-<br>
 
 <div align=center>
 <img src="../../res/胆机安装参考图1.jpg" width="100%" height="100%"></img>  
 </div>
 <br>
 
+<div align=center>
+<img src="../../res/胆机安装参考图2.jpg" width="100%" height="100%"></img>  
+</div>
+<br>
+
 ### 自己制作的图片  
 
-
+<div align=center>
+<img src="../../res/胆机外图.jpg" width="100%" height="100%"></img>  
+</div>
+<br>
 
 
 
