@@ -7,7 +7,7 @@
 
 * ### [数字电路基本知识](./base-knowledge.md)
 * ### [单片机原理及应用](./mcu-knowledge.md)
-* ### [数字电路及单片机实验](./md/mcu-learn/README.md)  
+* ### [51-开发板学习](./md/mcu-learn/README.md)  
 * ### [数字电子技术基础](./md/数字电子技术基础.md)
 * ### [模拟电子技术基础](./md/模拟电子技术基础.md)
 * ### [GO汇编指令学习](./go-asm.md) 
