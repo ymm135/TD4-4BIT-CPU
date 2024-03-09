@@ -2,9 +2,7 @@
 
 [电子管声频放大器实用手册.pdf](../../res/files/电子管声频放大器实用手册.pdf)  
 
-<div align=center>
-<img src="../../res/胆机1.png" width="100%" height="100%"></img>  
-</div>
+![[../../res/胆机1.png]]  
 
 ## 元器件基础知识 
 ### 电子管 
@@ -21,42 +19,24 @@
 ## 套件 
 ### 清单及制作图 
 
-<div align=center>
-<img src="../../res/套件清单.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/套件清单.png]]  
 
-<div align=center>
-<img src="../../res/表头接线图.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/表头接线图.png]]  
 
-<div align=center>
-<img src="../../res/胆机安装图.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/胆机安装图.png]]  
 
 
 ## 自己动手制作
 ### 参考图 
 
 
-<div align=center>
-<img src="../../res/胆机安装参考图1.jpg" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/胆机安装参考图1.jpg]]  
 
-<div align=center>
-<img src="../../res/胆机安装参考图2.jpg" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/胆机安装参考图2.jpg]]  
 
 ### 自己制作的图片  
 
-<div align=center>
-<img src="../../res/胆机外图.jpg" width="100%" height="100%"></img>  
-</div>
-<br>
+![[../../res/胆机外图.jpg]]  
 
 
 

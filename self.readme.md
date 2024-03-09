@@ -9,12 +9,10 @@
 ### [胆机DIY](md/audio/胆机DIY套件.md)  
 
 ## 基础知识(CPU逻辑电路)
-### [冯·诺伊曼结构](https://zh.m.wikipedia.org/zh-hans/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84)  
+### [冯·诺伊曼结构](https://zh.m.wikipedia.org/zh-hans/冯·诺伊曼结构)  
 冯·诺伊曼结构（英语：Von Neumann architecture），也称冯·纽曼模型（Von Neumann model）或普林斯顿结构（Princeton architecture），是一种将程序指令存储器和数据存储器合并在一起的电脑设计概念结构。本词描述的是一种实作通用图灵机的计算装置，以及一种相对于平行计算的序列式架构参考模型（referential model）  
 
-<div align=center>
-<img src="./res/Von_Neumann_architecture.svg.png" width="60%" height="60%"></img>  
-</div>
+![[./res/Von_Neumann_architecture.svg.png]]  
 
 存储程序计算机在体系结构上主要特点有：
 
@@ -27,23 +25,18 @@
 
 ### TD4 结构
 
-<div align=center>
-<img src="./res/TD4-CPU-Block.png" width="80%" height="80%"></img>  
-</div>
+![[./res/TD4-CPU-Block.png]]  
 
 ### 原理图 
 [TD4-SCH.pdf](origin/hardware/v1.3/TD4-SCH.pdf)   
 
-<div align=center>
-<img src="./res/原理图预览.png" width="100%" height="100%"></img>  
-</div>
+![[./res/原理图预览.png]]  
 
 ### PCB标识
 
 Td4的PCB元器件标识  
-<div align=center>
-<img src="./res/Td4的PCB标识.png" width="100%" height="100%"></img>  
-</div> 
+![[./res/Td4的PCB标识.png]]  
+ 
 
 ### BOM 
 [BOM](origin/hardware/v1.3/TD4-BOM.htm)  
@@ -66,95 +59,53 @@ Td4的PCB元器件标识
 
 ## 原理分析
 ### [数字逻辑设计](https://circuitverse.org/users/6130/projects/17074)  
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-HC161</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-HC161.png" width="80%" height="80%"></img>  
-</div>
-<br>
+![[./res/TD4-HC161.png]]  
 
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-HC153</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-HC153x2.png" width="60%" height="60%"></img>  
-</div>
-<br>
+![[./res/TD4-HC153x2.png]]  
 
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-ALU</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-ALU.png" width="60%" height="60%"></img>  
-</div>
-<br>
+![[./res/TD4-ALU.png]]  
 
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-HC161PC</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-HC161PC.png" width="80%" height="80%"></img>  
-</div>
-<br>
+![[./res/TD4-HC161PC.png]]  
 
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-Decoder</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-Decoder.png" width="80%" height="80%"></img>  
-</div>
-<br>
+![[./res/TD4-Decoder.png]]  
 
-<div align="center">
+
     <font face="黑体" color=gray size=3>TD4-Main</font> 
-</div>
-<div align=center>
-    <img src="./res/TD4-Main.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/TD4-Main.png]]  
 
 
 
 ### 时钟、复位 
 
 时钟及复位电路: 
-<div align=center>
-    <img src="./res/clock2.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/clock2.png]]  
 
 时钟电路细节: 
-<div align=center>
-    <img src="./res/clock2.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/clock2.png]]  
 
 10 HZ  宽度为100ms， 正脉宽56ms 负脉宽 47ms 
-<div align=center>
-    <img src="./res/DSOBMP0020.bmp" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/DSOBMP0020.bmp]]  
 
 1HZ 宽度为1000ms
-<div align=center>
-    <img src="./res/DSOBMP0020.bmp" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/DSOBMP0020.bmp]]  
 
 
 ### 存储器(SN74HC161N)   
 
-<div align=center>
-    <img src="./res/161-2.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/161-2.png]]  
 
 功能表:  
-<div align=center>
-    <img src="./res/161-1.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/161-1.png]]  
 
 
 
@@ -165,29 +116,17 @@ Td4的PCB元器件标识
 ### 控制器(74HC/HCT153) 
 Dual 4-input multiplexer  
 
-<div align=center>
-    <img src="./res/153-1.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/153-1.png]]  
 
-<div align=center>
-    <img src="./res/153-2.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/153-2.png]]  
 
-<div align=center>
-    <img src="./res/153-3.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/153-3.png]]  
 
 
 ### 运算器(TC74HC283AFN)
 4-Bit Binary Full Adder
 
-<div align=center>
-    <img src="./res/283-1.png" width="100%" height="100%"></img>  
-</div>
-<br>
+![[./res/283-1.png]]  
 
 
 ### 指令集 
@@ -243,10 +182,7 @@ OUT 0x4
 OUT 0x8
 ```
 
-<div align=center>
-<img src="./res/流水灯实验.png" width="80%" height="80%"></img>  
-</div>
-<br>
+![[./res/流水灯实验.png]]  
 
 相当于循环输出1,2,4,8  `OUT Im`指令对应`1011`， `OUT 0x1`对应的指令就是`1011 0001`  
 
@@ -255,24 +191,15 @@ OUT 0x8
 
 ## CPU焊接  
 ### USB 
-<div align=center>
-<img src="./res/USB座子焊接.jpg" width="60%" height="60%"></img>  
-</div>
-<br>
+![[./res/USB座子焊接.jpg]]  
 
-<div align=center>
-<img src="./res/micro-usb-sch.png" width="50%" height="50%"></img>  
-</div>
+![[./res/micro-usb-sch.png]]  
 
 ### 正面图  
-<div align=center>
-<img src="./res/自己制作的TD4.jpg" width="100%" height="100%"></img>  
-</div>
+![[./res/自己制作的TD4.jpg]]  
 
 ### 背面图    
-<div align=center>
-<img src="./res/Td4-背面.png" width="100%" height="100%"></img>  
-</div>
+![[./res/Td4-背面.png]]  
 
 ## CPU编写程序
 [Verilog HDL学习](https://www.bilibili.com/video/BV12y4y1v7V3?p=1)  

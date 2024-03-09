@@ -19,15 +19,12 @@
 [MASM基本使用](https://github.com/ymm135/Irvine)
 
 
-<br>
 
 本书籍的[官方网站](http://www.asmirvine.com/index6th.htm).  [源码仓库](https://github.com/ymm135/Irvine). [vs2015工程](../TD4-4BIT-CPU/res/files/汇编语言vs2015工程)  
-<br>
 
 网络公开课[汇编语言程序设计](https://www.icourses.cn/web/sword/portal/shareDetails?cId=2720#/course/chapter)
 [ppt讲义](./doc/汇编程序设计)
 
-<br>
 
 可以通过其他工具查看寄存器及调用栈 [asm-cli](https://github.com/cch123/asm-cli)  
 
@@ -49,11 +46,9 @@
 由于 64 位寄存器允许访问多种大小和位置，我们定义一个字节为 8 位，一个字为 16 位，双字为 32 位，四字为 64 位，双四字为 128 位. Intel 将字节存储为“little endian”，这意味着较低的有效字节存储在较低的内存地址中。  
 x86通用架构  
 
-<br>
 
 ![x86通用架构](/res/x86通用架构.png)  
 
-<br>
 
 汇编器工具: Assemblers  
 An Internet search reveals x64-capable assemblers such as the Netwide Assembler [NASM](https://www.nasm.us/), a NASM rewrite called [YASM](http://yasm.tortall.net/), the fast Flat Assembler [FASM](http://flatassembler.net/), and the traditional Microsoft MASM. There is even a free IDE for x86 and x64 assembly called WinASM. Each assembler has varying support for other assemblers' macros and syntax, but assembly code is not source-compatible across assemblers like C++ or Java* are.
@@ -142,11 +137,7 @@ vendor/github.com/go-gl/glfw/v3.3/glfw/c_glfw.go
 
 [Delve调试器](https://chai2010.cn/advanced-go-programming-book/ch3-asm/ch3-09-debug.html)
 
-<br>
-<div align=center>
-<img src="./res/vscode-go-debug-dap.png" width="60%" height="60%" title="Delve调试器"></img>  
-</div>
-<br>
+![[./res/vscode-go-debug-dap.png]]  
 
 ```
 # 开始调试
@@ -325,7 +316,7 @@ Dump of assembler code for function main.main:
    0x000000000047e365 <+261>:	mov    %rax,0xa8(%rsp)
    0x000000000047e36d <+269>:	movq   $0x1,0xb0(%rsp)
    0x000000000047e379 <+281>:	movq   $0x1,0xb8(%rsp)
-   0x000000000047e385 <+293>:	mov    $0x1,%ebx
+   0x000000000047e385 <+293>:	mov    $0x1,�x
    0x000000000047e38a <+298>:	mov    %rbx,%rcx
    0x000000000047e38d <+301>:	callq  0x478f80 <fmt.Println>
    0x000000000047e392 <+306>:	mov    0xc0(%rsp),%rbp
@@ -509,10 +500,8 @@ c00011feb0
 源代码  
 src/runtime/map.go
 如果使用delve调试不清晰，可以使用gdb调试程序，可以直接看到map的结构
-<br>
 
 ![DAP](./res/go-map1.png)  
-<br>
 
 
 汇编指令  
@@ -695,11 +684,9 @@ f = 0xc000111f00
 
 rsp+0x80 = f ,就是语句 mov qword ptr [rsp+0x80]  .从堆栈的接口看，这个参数f在RBP之前就已经创建了。
 ```
-<br>
 这个过程方法栈的变化过程:  
 
 ![DAP](./res/函数与方法调用.jpg) 
-<br>
 
 - **总结**  
 
@@ -707,8 +694,6 @@ rsp+0x80 = f ,就是语句 mov qword ptr [rsp+0x80]  .从堆栈的接口看，�
 > 
 >需要注意的是go方法，比如这里的CloseFile方法，设计到结构体File，在调用体方法时，首先会保存到寄存器中,这里是保存到rax寄存器中，最终保存到方法栈以供调用。
 
-<br>
-<br>
 现在的问题是方法调用时，怎么知道File该作为参数保存到寄存器并压入栈中呢？
 这就涉及到Go编译器的具体实现了，首先通过增加-x(印编译时会用到的所有命令)数可以看到编译过程  
 
@@ -718,11 +703,7 @@ go build -n method.go
 这一部分是编译的核心，通过 compile、 buildid、 link 三个命令会编译出可执行文件 a.out。  
 然后通过 mv 命令把 a.out 移动到当前文件夹下面，并改成跟项目文件一样的名字（这里也可以自己指定名字）
 
-<br>
-<div align=center>
-<img src="./res/go-byq-3.png" width="60%" height="60%" title="go 编译过程"></img>  
-</div>
-<br>
+![[./res/go-byq-3.png]]  
 
 机器码生成部分:  
 经过优化后的中间代码，首先会在这个阶段被转化为汇编代码（Plan9），而汇编语言仅仅是机器码的文本表示，机器还不能真的去执行它。所以这个阶段会调用汇编器，汇编器会根据我们在执行编译时设置的架构，调用对应代码来生成目标机器码。
