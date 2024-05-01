@@ -49,7 +49,9 @@ void main()
 
 ### 7-动态数码管实验
 
-![[../../res/动态数码管1.png]]  
+<div align=center>
+<img src="../../res/动态数码管1.png" width="90%" height="90%"></img>  
+</div>
 
 ```c
 /**************************************************************************************
@@ -139,11 +141,19 @@ void main()
 
 ### 16-外部中断实验 
 
-![[../../res/51-开发板-中断概览.png]]  
+<div align=center>
+<img src="../../res/51-开发板-中断概览.png" width="90%" height="90%"></img>  
+</div>
 
-![[../../res/51-开发板-中断结构.png]]  
+<div align=center>
+<img src="../../res/51-开发板-中断结构.png" width="90%" height="90%"></img>  
+</div>
 
-![[../../res/51-开发板-中断.png]]  
+<br>
+<div align=center>
+<img src="../../res/51-开发板-中断.png" width="100%" height="100%"></img>  
+</div>
+<br>
 
 > 比如中断1的中断向量地址为0003H，那么就是代码区:`0003`, 从截图可知`0003`~`0005`存储为`02 00 06`, 这就意味着中断1跳向的地址为`0006`,翻译为： `LJMP exti0(0006)`  
 
@@ -219,7 +229,11 @@ void exti0() interrupt 0 //外部中断0中断函数
 
 ### 17-定时器实验  
 
-![[../../res/51-开发板-Timer中断.png]]  
+<br>
+<div align=center>
+<img src="../../res/51-开发板-Timer中断.png" width="100%" height="100%"></img>  
+</div>
+<br>
 
 > 定时器的中断向量地址为: `000B`， 存储的内容为`02 00 0E`也就是`LJMP 000E`  
 
@@ -363,11 +377,17 @@ void uart() interrupt 4 //串口通信中断函数
 
 ### 23-ADC模数转换实验  
 
-![[../../res/ADC-1.png]]  
+<div align=center>
+<img src="../../res/ADC-1.png" width="80%" height="80%"></img>  
+</div>
 
-![[../../res/ADC-2.png]]  
+<div align=center>
+<img src="../../res/ADC-2.png" width="80%" height="80%"></img>  
+</div>
 
-![[../../res/ADC-3.png]]  
+<div align=center>
+<img src="../../res/ADC-3.png" width="80%" height="80%"></img>  
+</div>
 
 ```c
 /**************************************************************************************
@@ -399,7 +419,7 @@ void main()
 		adc_vol=5.0*adc_value/4096;//将读取的AD值转换为电压
 		adc_value=adc_vol*10;//放大10倍，即保留小数点后一位
 		adc_buf[0]=gsmg_code[adc_value/10]|0x80;
-		adc_buf[1]=gsmg_code[adc_value];
+		adc_buf[1]=gsmg_code[adc_value%10];
 	   	adc_buf[2]=0x3e;//显示单位V
 		smg_display(adc_buf,6);		
 	}		
@@ -600,9 +620,13 @@ void lcd1602_show_string(u8 x,u8 y,u8 *str)
 
 ### 24-DAC数模转换实验  
 
-![[../../res/DAC-1.png]]  
+<div align=center>
+<img src="../../res/DAC-1.png" width="80%" height="80%"></img>  
+</div>
 
-![[../../res/DAC-2.png]]  
+<div align=center>
+<img src="../../res/DAC-2.png" width="80%" height="80%"></img>  
+</div>
 
 ```c
 /**************************************************************************************
@@ -650,11 +674,17 @@ void main()
 
 ### 25-LCD1602液晶显示实验  
 
-![[../../res/LCD1602-1.png]]  
+<div align=center>
+<img src="../../res/LCD1602-1.png" width="90%" height="90%"></img>  
+</div>
 
-![[../../res/LCD1602-2.png]]  
+<div align=center>
+<img src="../../res/LCD1602-2.png" width="90%" height="90%"></img>  
+</div>
 
-![[../../res/LCD1602-3.png]]  
+<div align=center>
+<img src="../../res/LCD1602-3.png" width="90%" height="90%"></img>  
+</div>
 
 ```c
 /**************************************************************************************

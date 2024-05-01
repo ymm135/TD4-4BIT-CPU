@@ -15,16 +15,21 @@
 
 ### [TD4-CPU 原理在线模拟](https://vanya.jp.net/td4/)  
 
-![[./res/td4-monitu.png]]  
+<img src="./res/td4-monitu.png" width="100%" height="100%" title="原理在线模拟"></img>
+  
 模块设计图  
-![[./doc/block diagram.png]]  
+<img src="./doc/block%20diagram.png" width="60%" height="60%" title="模块设计图"></img>
+  
 原理图  
-![[./doc/cpu_td4.jpg]]  
+<img src="./doc/cpu_td4.jpg" width="100%" height="100%" title="原理图"></img>
+  
 
 -----
 原作者的README: 
 
-![[doc/TD4.jpg]]  
+<div align=center>
+<img src="doc/TD4.jpg" width="80%" height="80%" title="go 编译过程"></img>  
+</div>
 
 #### [自己动手做CPU 之 TD4 前言](https://www.bilibili.com/video/av19607028/) ####
 #### [自己动手做CPU 之 TD4 原理分析0-系统综述](https://www.bilibili.com/video/av19608406/) ####
